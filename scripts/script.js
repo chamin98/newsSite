@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
+
   const apikey = "daf2e558d9234514b40763f8bcb8ecb1";
   const blogContainer = document.getElementById("blog-container");
+  const searchField = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
 
-  if (!blogContainer) {
-    console.error("Error: blogContainer element not found.");
-    return;
-  }
 
+ 
   async function fetchRandomNews() {
     try {
-      const apiUrl = `https://newsapi.org/v2/top-headlines?sources=techcrunch&pageSize=15&apikey=${apikey}`;
+      const apiUrl = 
+      `https://newsapi.org/v2/top-headlines?sources=techcrunch&pageSize=15&apikey=${apikey}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       return data.articles;
@@ -17,6 +17,31 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error fetching", error);
       return [];
     }
+  }
+
+  searchButton.addEventListener('click', async () => {
+    const query = searchField.value.trim();
+    if(query !== ""){
+        try {
+            const articles = await fetchNewsQuery(query)
+            displayBlogs(articles)
+        } catch (error) {
+            console.log('Error fetching news by query', error);
+        }
+    }
+  })
+
+  async function fetchNewsQuery(query){
+    try {
+        const apiUrl = 
+        `https://newsapi.org/v2/everything?q=${query}&pageSize=15&apikey=${apikey}`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        return data.articles;
+      } catch (error) {
+        console.error("Error fetching", error);
+        return [];
+      }
   }
 
   function displayBlogs(articles) {
@@ -64,4 +89,4 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error fetching", error);
     }
   })();
-});
+
