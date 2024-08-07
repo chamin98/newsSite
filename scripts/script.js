@@ -6,7 +6,7 @@
 
 
  
-  async function fetchRandomNews() {
+  async function fetchRandomNews() { //Fetach function
     try {
       const apiUrl = 
       `https://newsapi.org/v2/top-headlines?sources=techcrunch&pageSize=15&apikey=${apikey}`;
@@ -19,7 +19,7 @@
     }
   }
 
-  searchButton.addEventListener('click', async () => {
+  searchButton.addEventListener('click', async () => {  //Event listner for search button
     const query = searchField.value.trim();
     if(query !== ""){
         try {
@@ -31,7 +31,7 @@
     }
   })
 
-  async function fetchNewsQuery(query){
+  async function fetchNewsQuery(query){   //Fetch search results
     try {
         const apiUrl = 
         `https://newsapi.org/v2/everything?q=${query}&pageSize=15&apikey=${apikey}`;
@@ -44,7 +44,7 @@
       }
   }
 
-  function displayBlogs(articles) {
+  function displayBlogs(articles) {  //Display function
     blogContainer.innerHTML = "";
     articles.forEach((article) => {
       const blogCard = document.createElement("div");
