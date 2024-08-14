@@ -1,5 +1,5 @@
 
-  const apikey = "daf2e558d9234514b40763f8bcb8ecb1";
+  const apikey = "";
   const blogContainer = document.getElementById("blog-container");
   const searchField = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
